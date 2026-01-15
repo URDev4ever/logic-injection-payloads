@@ -1,0 +1,16 @@
+true
+false
+"true"
+"false"
+1
+0
+-1
+"1"
+"0"
+"yes"
+"no"
+"on"
+"off"
+[]
+{}
+null

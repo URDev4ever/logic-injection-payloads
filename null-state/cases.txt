@@ -1,0 +1,29 @@
+Normal: if (value) → Expected: truthy
+Broken: value = null → false
+Broken: value = undefined → false
+Broken: value = "" → false
+
+Normal: if (!value) → Expected: falsy
+Broken: value = " " → true (non-empty)
+Broken: value = [] → true (array exists)
+Broken: value = "0" → true (non-empty)
+
+Normal: if (user.role != "banned") → Expected: not banned
+Broken: user = null → TypeError
+Broken: user.role = undefined → true (undefined != "banned")
+Broken: user.role = null → true (null != "banned")
+
+Normal: if (config.value) → Expected: config has value
+Broken: config.value = 0 → false
+Broken: config.value = false → false
+Broken: config.value = "" → false
+
+Normal: if (input !== null) → Expected: not null
+Broken: input = undefined → true (undefined !== null)
+Broken: input = "null" → true (string)
+Broken: input = 0 → true
+
+Normal: if (data && data.id) → Expected: safe access
+Broken: data = null → false
+Broken: data = {id: 0} → false (0 falsy)
+Broken: data = {id: ""} → false

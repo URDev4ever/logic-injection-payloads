@@ -1,0 +1,29 @@
+Normal: if (userId) → Expected: truthy
+Broken: userId = "" → false
+Broken: userId = 0 → false
+Broken: userId = null → false
+
+Normal: if (userId == "admin") → Expected: exact match
+Broken: userId = "admin " → false (trim)
+Broken: userId = [] → false
+Broken: userId = "administrator" → false
+
+Normal: if (!userId) → Expected: falsy
+Broken: userId = " " → true (non-empty)
+Broken: userId = "0" → true (non-empty)
+Broken: userId = [] → true (object exists)
+
+Normal: if (role == "admin") → Expected: strict
+Broken: role = "Admin" → false (case)
+Broken: role = ["admin"] → false (array)
+Broken: role = "admin\t" → false (whitespace)
+
+Normal: if (isAuthenticated) → Expected: true
+Broken: isAuthenticated = "true" → true (truthy)
+Broken: isAuthenticated = 1 → true
+Broken: isAuthenticated = [] → true
+
+Normal: if (password) → Expected: non-empty
+Broken: password = "" → false
+Broken: password = " " → true
+Broken: password = 0 → false

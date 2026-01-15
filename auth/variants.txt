@@ -1,0 +1,21 @@
+""
+" "
+"\t"
+"\n"
+"0"
+0
+-1
+1
+null
+undefined
+true
+false
+"true"
+"false"
+"admin"
+"administrator"
+"user"
+"guest"
+[]
+{}
+"null"

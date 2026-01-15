@@ -1,0 +1,29 @@
+Normal: if (role == "admin") → Expected: string "admin"
+Broken: role = ["admin"] → false (array vs string)
+Broken: role = {"role":"admin"} → false (object)
+Broken: role = "admin " → false (whitespace)
+
+Normal: if (permission) → Expected: truthy
+Broken: permission = [] → true (array exists)
+Broken: permission = {} → true (object exists)
+Broken: permission = [0] → true (non-empty)
+
+Normal: if (Array.isArray(data)) → Expected: array
+Broken: data = "[]" → false (string)
+Broken: data = {} → false (object)
+Broken: data = null → false
+
+Normal: if (obj.constructor === Object) → Expected: plain object
+Broken: obj = [] → false (Array constructor)
+Broken: obj = null → TypeError
+Broken: obj = "{}" → false (string)
+
+Normal: if (user.role === data.role) → Expected: strict equality
+Broken: user.role = "admin", data.role = ["admin"] → false
+Broken: user.role = 1, data.role = "1" → false
+Broken: user.role = null, data.role = undefined → false
+
+Normal: if (array[0] === "admin") → Expected: first element
+Broken: array = [] → undefined comparison
+Broken: array = ["", "admin"] → false
+Broken: array = [null] → false

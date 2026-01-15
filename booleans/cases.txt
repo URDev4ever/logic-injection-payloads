@@ -1,0 +1,29 @@
+Normal: if (flag) → Expected: true/truthy
+Broken: flag = false → false
+Broken: flag = 0 → false
+Broken: flag = "false" → true (non-empty string)
+
+Normal: if (isAdmin == true) → Expected: strict true
+Broken: isAdmin = "true" → false (type)
+Broken: isAdmin = 1 → false
+Broken: isAdmin = [] → false
+
+Normal: if (!flag) → Expected: false/falsy
+Broken: flag = "0" → false (non-empty string)
+Broken: flag = [] → false (object exists)
+Broken: flag = "false" → false (non-empty)
+
+Normal: if (featureEnabled != false) → Expected: not false
+Broken: featureEnabled = 0 → true (0 != false)
+Broken: featureEnabled = "" → true ("" != false)
+Broken: featureEnabled = null → true
+
+Normal: if (access == 1) → Expected: numeric 1
+Broken: access = "1" → true (loose equality)
+Broken: access = true → true (true == 1)
+Broken: access = "on" → false
+
+Normal: if (verified) → Expected: truthy
+Broken: verified = "no" → true (non-empty)
+Broken: verified = {} → true
+Broken: verified = -1 → true

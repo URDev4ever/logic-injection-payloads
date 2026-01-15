@@ -1,0 +1,12 @@
+[]
+{}
+[null]
+["admin"]
+["user"]
+[0]
+[1]
+{"role":"admin"}
+{"isAdmin":true}
+{"": "value"}
+"[]"
+"{}"

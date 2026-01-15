@@ -1,0 +1,27 @@
+Normal: if (input == "admin") → Expected: exact string
+Broken: input = "admin " → false (trailing space)
+Broken: input = "Admin" → false (case)
+Broken: input = "admin\0" → false (null byte)
+
+Normal: if (trim(input) == "admin") → Expected: trimmed match
+Broken: input = "admin\0" → false (null byte not trimmed)
+Broken: input = "admin\t" → true (whitespace trimmed)
+
+Normal: if (parseInt(value) == 0) → Expected: numeric zero
+Broken: value = "0 " → 0 (trailing space)
+Broken: value = "0.0.0" → 0 (stops at dot)
+Broken: value = "0e0" → 0 (scientific notation)
+
+Normal: if (input.toLowerCase() == "admin") → Expected: case-insensitive
+Broken: input = "ADMIN " → false (space remains)
+Broken: input = "admin\0" → false (null byte)
+Broken: input = "\ufeffadmin" → false (BOM)
+
+Normal: if (Number(input) > 0) → Expected: positive number
+Broken: input = " 0" → 0 (not > 0)
+Broken: input = "0 " → 0
+Broken: input = "-0" → -0 (equals 0)
+
+Normal: if (input.replace(/\s/g, "") == "admin") → Expected: spaces removed
+Broken: input = "admin\0" → false (null byte not space)
+Broken: input = "\u200badmin" → false (zero-width space)

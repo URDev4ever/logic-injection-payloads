@@ -1,0 +1,29 @@
+Normal: if (value > 0) → Expected: positive
+Broken: value = 0 → false
+Broken: value = -1 → false
+Broken: value = 0.0000001 → true (tiny positive)
+
+Normal: if (value >= 0) → Expected: non-negative
+Broken: value = -1 → false
+Broken: value = -0.1 → false
+Broken: value = NaN → false (NaN comparisons)
+
+Normal: if (count < limit) → Expected: under limit
+Broken: count = 2147483648 → false (overflow)
+Broken: count = Infinity → false
+Broken: count = "999999" → false (string compare)
+
+Normal: if (price > 0) → Expected: positive price
+Broken: price = 0 → false
+Broken: price = -0.01 → false
+Broken: price = 0.0 → false
+
+Normal: if (cooldown == 0) → Expected: zero
+Broken: cooldown = "0" → true (loose equality)
+Broken: cooldown = 0.0 → true
+Broken: cooldown = false → true (0 == false)
+
+Normal: if (remaining <= 0) → Expected: zero or negative
+Broken: remaining = 0.1 → false
+Broken: remaining = "0" → true (type coercion)
+Broken: remaining = -0 → true
